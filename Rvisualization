@@ -1,0 +1,41 @@
+# Bar PLot
+library(tidyverse)
+df <- diamonds
+glimpse(df)
+
+ggplot(df, aes(cut)) +
+  geom_bar()
+
+ggplot(df, aes(cut, fill = color)) +
+  geom_bar(position = position_dodge()) + 
+  ggtitle("Bu yazi ana baslik yazididir") +
+  xlab("Pirlanta kaliteleri") + 
+  ylab("Gozlenme Sikliklari")
+  
+# Histogram and Density Plots  
+glimpse(df)
+ggplot(df, aes(price)) +
+  geom_histogram(binwidth = 1000)
+
+ggplot(df, aes(price)) +
+  geom_density()
+
+ggplot(df, aes(price)) +
+  geom_histogram(aes(y = ..density..)) +
+  geom_density(alpha = .3, fill = "orange") 
+
+ggplot(df, aes(price)) +
+  geom_histogram() + 
+  facet_grid(cut ~. )
+  
+# Ridgeline  
+library(ggridges)
+ggplot(df, aes(x = price, y = cut, fill = cut)) +
+  geom_density_ridges() + 
+  theme_ridges() + 
+  theme(legend.position = "none")
+  
+  
+  
+  
+  
